@@ -14,8 +14,11 @@ services:
 install:
   # Install Ansible.
   - pip install ansible
-  - sudo apt-get install vagrant -y
-
+  - sudo apt-get install apt-transport-https vagrant ca-certificates curl software-properties-common -y
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get update
+  - sudo apt-get -y install docker-ce
 script:
   - vagrant up --provider docker
   #
