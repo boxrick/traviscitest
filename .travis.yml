@@ -1,3 +1,5 @@
+language: python
+sudo: true
 
 env:
   - distro: ubuntu1804
@@ -5,16 +7,21 @@ env:
 services:
   - docker
 
-sudo: false
+install:
+  - wget https://releases.hashicorp.com/vagrant/2.0.4/vagrant_2.0.4_x86_64.deb
+  - sudo apt install ./vagrant_2.0.4_x86_64.deb -y
 
 cache:
-    apt: true
+  apt: true
+  pip: true
 
 addons:
+  directories:
+    - $HOME/.cache/pip
   apt:
     packages:
       - ansible
-      - vagrant
+      # - vagrant
 
 script:
   - cd ./tests/
