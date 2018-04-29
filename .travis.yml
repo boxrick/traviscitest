@@ -10,18 +10,11 @@ services:
 install:
   - wget https://releases.hashicorp.com/vagrant/2.0.4/vagrant_2.0.4_x86_64.deb
   - sudo apt install ./vagrant_2.0.4_x86_64.deb -y
+  - pip install ansible
 
 cache:
   apt: true
   pip: true
-
-addons:
-  directories:
-    - $HOME/.cache/pip
-  apt:
-    packages:
-      - ansible
-      # - vagrant
 
 script:
   # - cd ./tests/
