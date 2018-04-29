@@ -14,8 +14,10 @@ services:
 install:
   # Install Ansible.
   - pip install ansible
-
+  - apt-get install vagrant -y
 
 script:
-  - container_id=$(mktemp)
-  - 'sudo docker run -d --name systemd --security-opt seccomp=unconfined --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro -t boxrick/bionic-docker-ansible > "${container_id}"'
+  - vagrant up --provider docker
+  # 
+  # container_id=$(mktemp)
+  # - 'sudo docker run -d --name systemd --security-opt seccomp=unconfined --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro -t boxrick/bionic-docker-ansible > "${container_id}"'
